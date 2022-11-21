@@ -8,29 +8,33 @@ const todoList = () => {
   };
 
   const overdue = () => {
-    return all.filter((todoItem) => {
-      todoItem.dueDate < today; //expired
-    });
+    return all.filter(
+      function (val) {
+        return val.dueDate < today;
+      } //expired
+    );
   };
 
   const dueToday = () => {
-    return all.filter((todoItem) => {
-      todoItem.dueDate == today; //today expiry
+    return all.filter(function (val) {
+      return val.dueDate === today; //today expiry
     });
   };
 
   const dueLater = () => {
-    return all.filter((todoItem) => {
-      todoItem.dueDate > today; //expiry later
+    return all.filter(function (val) {
+      return val.dueDate > today; //expiry later
     });
   };
 
   const toDisplayableList = (list) => {
-    return list.map((todoListItem) => {
-      `${todoListItem.completed ? "[x]" : "[ ]"} ${todoListItem.title} ${
-        todoListItem.dueDate == today ? "" : todoListItem.dueDate
-      }`;
-    }).join("\n");
+    return list
+      .map(function (val) {
+        return `${
+          val.completed ? "[x]" : "[ ]"
+        } ${val.title} ${val.dueDate === today ? "" : val.dueDate}`;
+      })
+      .join("\n");
   };
 
   return {
